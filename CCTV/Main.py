@@ -1,5 +1,5 @@
 import subprocess
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import cx_Oracle as db
 import matplotlib.pyplot as plt
 import io
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index2.html')
 
 @app.route('/cctv')
 def Detect():
