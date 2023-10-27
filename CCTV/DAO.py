@@ -1,23 +1,10 @@
-from flask import Flask, render_template
-import cx_Oracle as db
+import DataBase as db
 import matplotlib.pyplot as plt
 import io
 import base64
 
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-
-    # Oracle 데이터베이스에 연결하기 위한 정보
-    dsn = db.makedsn(host='localhost', port=1521, service_name='xe')
-    user = 'hr'
-    password = 'hr'
-
-    # 데이터베이스 연결
-    connection = db.connect(user=user, password=password, dsn=dsn)
-    cursor = connection.cursor()
-
+def plot():
+    cursor, connection = db.db()
     # 쿼리 실행
     query = "SELECT age, COUNT(*) FROM detected_faces GROUP BY age"
     cursor.execute(query)
@@ -51,7 +38,4 @@ def home():
     connection.close()
 
     # HTML에 이미지를 전달
-    return render_template('index2.html', plot_url=plot_url)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return plot_url
