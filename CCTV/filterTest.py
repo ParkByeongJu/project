@@ -4,7 +4,7 @@ import DataBase as db
 
 def create_heatmap_on_image(image_path):
     cursor, connection = db.db()
-    cursor.execute("SELECT start_x, start_y, end_x, end_y FROM detected_faces")
+    cursor.execute("SELECT start_x, start_y, end_x, end_y FROM detected_faces WHERE gender = 'Male'")
     rows = cursor.fetchall()
     
 
@@ -28,11 +28,11 @@ def create_heatmap_on_image(image_path):
                 heatmap[y, x] += 1000  # y, x 순서에 주의하세요.
 
     # 히트맵 정규화
-    heatmap = np.log(heatmap + 1e-10) 
+    # heatmap = np.log(heatmap + 1e-10) 
     heatmap = heatmap / np.max(heatmap) * 255
 
     # 가우시안 필터 적용
-    heatmap = cv2.GaussianBlur(heatmap, (75, 75), 0)
+    heatmap = cv2.GaussianBlur(heatmap, (105, 105), 0)
 
     # 히트맵을 원본 이미지 크기에 맞게 변경
     heatmap_resized = cv2.resize(heatmap, (frame_width, frame_height))
@@ -48,4 +48,5 @@ def create_heatmap_on_image(image_path):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-create_heatmap_on_image('C:\\project\\CCTV\\image.png')
+# create_heatmap_on_image('C:\\project\\CCTV\\image.png')
+create_heatmap_on_image('D:\\project\\CCTV\\image.png')
