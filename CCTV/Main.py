@@ -38,7 +38,7 @@ def submit_form():
     gender = request.form['gender']
 
     # 가져온 데이터를 처리하거나 응답을 생성합니다.
-    response = f'시작날짜: {startDatetime}   , 끝날짜: {endDatetime}    , 최소연령: {minAge}    , 최대연령: {maxAge}    , 성별 : {gender}'
+    response = f'시작날짜: {startDatetime}, 끝날짜: {endDatetime}, 최소연령: {minAge}, 최대연령: {maxAge}, 성별 : {gender}'
     return response
 
 if __name__ == '__main__':
