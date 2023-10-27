@@ -24,6 +24,23 @@ def Detect():
 def chart():
     return render_template('chart.html', plot_url=dao.plot())
 
+@app.route('/dashboard')
+def showdashboard():
+    return render_template('dashboard.html')
+
+@app.route('/submit', methods=['POST'])
+def submit_form():
+    # POST 요청으로부터 데이터를 가져옵니다.
+    startDatetime = request.form['startDatetime']
+    endDatetime = request.form['endDatetime']
+    minAge = request.form['minAge']
+    maxAge = request.form['maxAge']
+    gender = request.form['gender']
+
+    # 가져온 데이터를 처리하거나 응답을 생성합니다.
+    response = f'시작날짜: {startDatetime}   , 끝날짜: {endDatetime}    , 최소연령: {minAge}    , 최대연령: {maxAge}    , 성별 : {gender}'
+    return response
+
 if __name__ == '__main__':
     app.run(debug=True)
 
