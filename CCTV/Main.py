@@ -47,9 +47,8 @@ def submit_form():
     }
 
     # 가져온 데이터를 처리하거나 응답을 생성합니다.
-    # response = f'시작날짜: {startDatetime}, 끝날짜: {endDatetime}, 최소연령: {minAge}, 최대연령: {maxAge}, 성별 : {gender}'
-    plot_url = dao.date_count(params)
-    return render_template('chart.html', plot_url=plot_url)
+    date_count_url = dao.date_count(params)
+    return render_template('chart.html', date_count_url=date_count_url)
 
 if __name__ == '__main__':
     app.run(debug=True)

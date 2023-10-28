@@ -2,11 +2,11 @@ import DataBase as db
 import matplotlib.pyplot as plt
 import io
 import base64
-# import font as ft
+import font as ft
 
 def date_count(params):
     cursor, connection = db.db()
-    # font = ft.font()
+    font = ft.font()
     # plt.rc("font", family=font)
     # 쿼리 실행
     query = """SELECT 
@@ -30,7 +30,7 @@ def date_count(params):
     counts = [row[1] for row in data]
 
     # 막대 그래프 생성
-    plt.rcParams['font.family'] ='Malgun Gothic'
+    plt.rcParams['font.family'] = font
     plt.rcParams['axes.unicode_minus'] =False
     plt.figure(figsize=(6, 4))
     plt.plot(dates, counts, marker='o')
@@ -42,11 +42,27 @@ def date_count(params):
     img = io.BytesIO()
     plt.savefig(img, format='png')
     img.seek(0)
-    plot_url = base64.b64encode(img.getvalue()).decode()
+    date_count_url = base64.b64encode(img.getvalue()).decode()
 
     # 연결 종료
     cursor.close()
     connection.close()
 
     # HTML에 이미지를 전달
-    return plot_url
+    return date_count_url
+
+def time_count(params):
+    cursor, connection = db.db()
+    font = ft.font()
+    query = """SELECT 
+                    gender,
+                    TO_CHAR(detect_time, 'HH24') AS detect_hour,
+                    COUNT(*) AS count
+                FROM
+                    test
+                GROUP BY
+                    TO_CHAR(detect_time, 'HH24'),
+                    gender
+                ORDER BY
+                    detect_hour;"""
+    cursor.execute(query)
