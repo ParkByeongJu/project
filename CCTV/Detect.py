@@ -19,22 +19,22 @@ connection = ora.connect(user=user, password=password, dsn=dsn)
 cursor = connection.cursor()
 
 # 얼굴 탐지 모델 파일 경로
-YOLO_CONFIG = 'D:\\project\\CCTV\\face.cfg'
-YOLO_WEIGHTS = 'D:\\project\\CCTV\\face.weights'
-# YOLO_CONFIG = 'C:\\project\\CCTV\\face.cfg'
-# YOLO_WEIGHTS = 'C:\\project\\CCTV\\face.weights'
+# YOLO_CONFIG = 'D:\\project\\CCTV\\face.cfg'
+# YOLO_WEIGHTS = 'D:\\project\\CCTV\\face.weights'
+YOLO_CONFIG = 'C:\\project\\CCTV\\face.cfg'
+YOLO_WEIGHTS = 'C:\\project\\CCTV\\face.weights'
 
 # 성별 예측 모델 파일 경로
-GENDER_MODEL = 'D:\\project\\CCTV\\weights\\deploy_gender.prototxt'
-GENDER_PROTO = 'D:\\project\\CCTV\\weights\\gender_net.caffemodel'
-# GENDER_MODEL = 'C:\\project\\CCTV\\weights\\deploy_gender.prototxt'
-# GENDER_PROTO = 'C:\\project\\CCTV\\weights\\gender_net.caffemodel'
+# GENDER_MODEL = 'D:\\project\\CCTV\\weights\\deploy_gender.prototxt'
+# GENDER_PROTO = 'D:\\project\\CCTV\\weights\\gender_net.caffemodel'
+GENDER_MODEL = 'C:\\project\\CCTV\\weights\\deploy_gender.prototxt'
+GENDER_PROTO = 'C:\\project\\CCTV\\weights\\gender_net.caffemodel'
 
 # 나이 예측 모델 파일 경로
-AGE_MODEL = 'D:\\project\\CCTV\\weights\\deploy_age.prototxt'
-AGE_PROTO = 'D:\\project\\CCTV\\weights\\age_net.caffemodel'
-# AGE_MODEL = 'C:\\project\\CCTV\\weights\\deploy_age.prototxt'
-# AGE_PROTO = 'C:\\project\\CCTV\\weights\\age_net.caffemodel'
+# AGE_MODEL = 'D:\\project\\CCTV\\weights\\deploy_age.prototxt'
+# AGE_PROTO = 'D:\\project\\CCTV\\weights\\age_net.caffemodel'
+AGE_MODEL = 'C:\\project\\CCTV\\weights\\deploy_age.prototxt'
+AGE_PROTO = 'C:\\project\\CCTV\\weights\\age_net.caffemodel'
 
 
 # 입력 이미지 전처리를 위한 평균값
@@ -167,8 +167,8 @@ def main():
         if accumulated_faces is None:
             accumulated_faces = {}
         
-        cap = cv2.VideoCapture(0)
-        # cap = cv2.VideoCapture("C:\\project\\CCTV\\in.avi")
+        # cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture("C:\\project\\CCTV\\in.avi")
         # cap = cv2.VideoCapture("D:\\project\\CCTV\\in.avi")
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
@@ -226,7 +226,7 @@ def main():
                 # 데이터베이스에 성별과 나이, 감지 시간 추가
                     if not accumulated_faces[face_id]['counted']:
                         detect_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # 현재 시각
-                        query = f"INSERT INTO detected_faces (face_id, gender, age, detect_time) VALUES ({face_id}, '{gender}', '{age}', '{detect_time}')"
+                        query = f"INSERT INTO detected_faces (face_id, gender, age, detect_time, start_x, start_y, end_x, end_y) VALUES ({face_id}, '{gender}', '{age}', '{detect_time}', {start_x}, {start_y}, {end_x}, {end_y})"
                         cursor.execute(query)
                         connection.commit()
                         accumulated_faces[face_id]['counted'] = True

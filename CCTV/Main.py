@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 import DAO as dao
+import filterTest as ft
 
 app = Flask(__name__)
 
@@ -28,6 +29,10 @@ def chart():
 def showdashboard():
     return render_template('ChartDashboard.html')
 
+@app.route('/heatmapform')
+def ShowHeatMapForm():
+    return render_template('HeatMapForm.html')
+
 @app.route('/submit', methods=['POST'])
 def submit_form():
     # POST 요청으로부터 데이터를 가져옵니다.
@@ -49,6 +54,28 @@ def submit_form():
     # 가져온 데이터를 처리하거나 응답을 생성합니다.
     date_count_url = dao.date_count(params)
     return render_template('chart.html', date_count_url=date_count_url)
+
+@app.route('/HeatMap', methods=['POST'])
+def HeatMap_submit_form():
+    # POST 요청으로부터 데이터를 가져옵니다.
+    startDatetime = request.form['startDatetime']
+    endDatetime = request.form['endDatetime']
+    minAge = request.form['minAge']
+    maxAge = request.form['maxAge']
+    gender = request.form['gender']
+
+    # 가져온 데이터를 딕셔너리 형태러 저장
+    params = {
+        'startDatetime' : startDatetime,
+        'endDatetime' : endDatetime,
+        'minAge' : minAge,
+        'maxAge' : maxAge,
+        'gender' : gender
+    }
+
+    # 가져온 데이터를 처리하거나 응답을 생성합니다.
+    HeatMap_url = ft.heatMap(params)
+    return render_template('HeatMap.html', HeatMap_url=HeatMap_url)
 
 if __name__ == '__main__':
     app.run(debug=True)

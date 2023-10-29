@@ -1,17 +1,15 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt 
 import DataBase as db
-import matplotlib.pyplot as plt
 import io
 import base64
 
 def heatMap(params):
     cursor, connection = db.db()
-    query = "SELECT start_x, start_y, end_x, end_y FROM detected_faces WHERE gender = 'Male'"
-    cursor.execute(query)
-    print(query)
+    query = "SELECT start_x, start_y, end_x, end_y FROM detected_faces WHERE gender = :gender"
+    cursor.execute(query, gender=params['gender'])
     rows = cursor.fetchall()
-    print(rows)
     
 
     # 원본 이미지 읽기
@@ -56,6 +54,7 @@ def heatMap(params):
     heatmap_url = base64.b64encode(img.getvalue()).decode()
 
     return heatmap_url
+
 
 # create_heatmap_on_image('C:\\project\\CCTV\\image.png')
 # create_heatmap_on_image('D:\\project\\CCTV\\image.png')
