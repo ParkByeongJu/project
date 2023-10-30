@@ -13,7 +13,7 @@ def date_count(params):
                     TO_CHAR(detect_time, 'YYYY-MM-DD') AS detect_date, 
                     COUNT(*) AS daily_count 
                 FROM 
-                    test
+                    detected_faces
                 WHERE 
                     TO_CHAR(detect_time, 'YYYY-MM-DD') BETWEEN :start_date AND :end_date
                 GROUP BY 
@@ -60,7 +60,7 @@ def time_count(params):
                     TO_CHAR(detect_time, 'HH24') AS detect_hour,
                     COUNT(*) AS count
                 FROM
-                    test
+                    detected_faces
                 WHERE
                     TO_CHAR(detect_time, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
                 GROUP BY
