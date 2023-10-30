@@ -53,7 +53,8 @@ def submit_form():
 
     # 가져온 데이터를 처리하거나 응답을 생성합니다.
     date_count_url = dao.date_count(params)
-    return render_template('chart.html', date_count_url=date_count_url)
+    time_count_url = dao.time_count(params)
+    return render_template('chart.html', date_count_url=date_count_url, time_count_url=time_count_url)
 
 @app.route('/HeatMap', methods=['POST'])
 def HeatMap_submit_form():
