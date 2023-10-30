@@ -51,7 +51,8 @@ def heatMap(params):
     
 
     # 원본 이미지 읽기
-    image = cv2.imread('C:\\project\\CCTV\\image.png')
+    image = cv2.imread('D:\\project\\CCTV\\image.png')
+    # image = cv2.imread('C:\\project\\CCTV\\image.png')
 
     # 이미지의 높이와 너비를 frame_height와 frame_width에 대입
     frame_height, frame_width = image.shape[:2]
@@ -70,7 +71,7 @@ def heatMap(params):
                 heatmap[y, x] += 1000  # y, x 순서에 주의하세요.
 
     # 히트맵 정규화
-    heatmap = np.log(heatmap + 1e-10) 
+    # heatmap = np.log(heatmap + 1e-10) 
     heatmap = heatmap / np.max(heatmap) * 255
 
     # 가우시안 필터 적용

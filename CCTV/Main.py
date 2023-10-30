@@ -15,7 +15,7 @@ def home():
 
 @app.route('/cctv')
 def Detect():
-    result = subprocess.run(['python', r'C:\\project\\CCTV\\Detect.py'], capture_output=True, text=True)
+    result = subprocess.run(['python', r'D\\project\\CCTV\\Detect.py'], capture_output=True, text=True)
     if result.returncode != 0:
         # 스크립트 실행 중 에러 발생
         return f"Error: {result.stderr}"

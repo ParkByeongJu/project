@@ -168,8 +168,8 @@ def main():
             accumulated_faces = {}
         
         # cap = cv2.VideoCapture(0)
-        # cap = cv2.VideoCapture("C:\\project\\CCTV\\in.avi")
-        cap = cv2.VideoCapture("D:\\project\\CCTV\\in.avi")
+        cap = cv2.VideoCapture("C:\\project\\CCTV\\in.avi")
+        # cap = cv2.VideoCapture("D:\\project\\CCTV\\in.avi")
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, frame_width)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, frame_height)
 
