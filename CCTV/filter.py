@@ -51,8 +51,8 @@ def heatMap(params):
     
 
     # 원본 이미지 읽기
-    image = cv2.imread('D:\\project\\CCTV\\image.png')
-    # image = cv2.imread('C:\\project\\CCTV\\image.png')
+    # image = cv2.imread('D:\\project\\CCTV\\image.png')
+    image = cv2.imread('C:\\project\\CCTV\\image.png')
 
     # 이미지의 높이와 너비를 frame_height와 frame_width에 대입
     frame_height, frame_width = image.shape[:2]
