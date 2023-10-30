@@ -5,6 +5,9 @@
         .btn-container{
           text-align: center;
         }
+        .title_center {
+      text-align: center;
+    }
     </style>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
@@ -49,8 +52,8 @@
 
                     <div class="">
                         <!--                            <div class="page-title">-->
-                        <div class="title_left">
-                            <h3>날짜, 나이 범위 및 성별 선택</h3>
+                        <div class="title_center">
+                            <h1>날짜, 나이 범위 및 성별 선택</h1>
                         </div>
                         <p><h4>날짜 및 시간 범위:</h4> <span id="rangeDisplay"></span></p>
                         <div class="item form-group">
@@ -135,7 +138,7 @@
                             <div class="btn-container">
                                 <a type="button" href="/" class="btn btn-secondary">뒤로 가기</a>
 
-                                <button type="submit" class="btn btn-success">그래프 보기</button>
+                                <button type="submit" class="btn btn-primary">HeatMap 보기</button>
                             </div>
                         </div>
                         <!--                        </div>-->

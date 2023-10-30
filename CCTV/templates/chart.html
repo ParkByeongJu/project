@@ -1,14 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .btn-container{
+          text-align: center;
+        }
+
+    
+  .title_center {
+    text-align: center;
+  }
+    </style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='../vendors/font-awesome/css/font-awesome.min.css') }}">
+    <!-- NProgress -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='nprogress.css') }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='green.css') }}">
+    <!-- bootstrap-progressbar -->
+    <!-- bootstrap-progressbar -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-progressbar-3.3.4.min.css') }}">
+    <!-- PNotify -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.nonblock.css') }}">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ url_for('static', filename='custom.min.css') }}" rel="stylesheet">
+
     <meta charset="UTF-8">
     <title>Detected Faces by Age</title>
 </head>
 <body>
+
+    
+    <div class="col-md-6 col-sm-6  ">
+        <div class="x_panel" style=" transform: translate(50%, 10%)">
+    
+            <div class="x_content">
+    
+    
+                <div class="tab-content" id="myTabContent">
+    
+                    <form action="/submit" method="post">
+    
+                        <div class="">
+                            <!--                            <div class="page-title">-->
+                            <div class="title_center">
+                                <h1> 차트보기 </h1>
     <img src="data:image/png;base64,{{ date_count_url }}">
     <img src="data:image/png;base64,{{ time_count_url }}">
-    <div class="btn-container">
-        <a type="button" href="/dashboard" class="btn btn-secondary">뒤로 가기</a>
+                                  </div>
+                        </div>
+                        <!--                        </div>-->
+
+                </form>
+
+
+            </div>
+        </div>
+        <div class="btn-container">
+            <a type="button" href="/dashboard" class="btn btn-secondary">뒤로 가기</a>
+        </div>
+    </div>
+
+
+
     </div>
 </body>
 </html>
