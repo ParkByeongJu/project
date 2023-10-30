@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webLib/css/layout.css">
     <title>웹페이지</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -40,8 +43,8 @@
 
     <div class="button-container">
         <a href="/cctv"><button class="btn btn-primary">CCTV 보기</button></a>
-        <button class="btn btn-info" onclick="showHeatmap()">Heatmap 보기</button>
-        <a href="/chart"><button class="btn btn-primary">대시보드</button></a>
+        <a href="/dashboard"><button class="btn btn-primary">대시보드</button></a>
+        <a href="/heatmapform"><button class="btn btn-primary">히트맵 보기</button></a>
     </div>
 
 
@@ -60,7 +63,7 @@
 
     function showChart() {
         // 차트 화면 표시 로직을 추가
-        alert('차트를 보여줍니다.');
+        alert('히트맵을 보여줍니다.');
     }
 </script>
 </html>

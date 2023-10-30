@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .btn-container{
+          text-align: center;
+        }
+    </style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+            <!-- Font Awesome -->
+            <link rel="stylesheet" href="{{ url_for('static', filename='../vendors/font-awesome/css/font-awesome.min.css') }}">
+    <!-- NProgress -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='nprogress.css') }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='green.css') }}">
+    <!-- bootstrap-progressbar -->
+    <!-- bootstrap-progressbar -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-progressbar-3.3.4.min.css') }}">
+    <!-- PNotify -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pnotify.nonblock.css') }}">
+
+    <!-- Custom Theme Style -->
+    <link href="{{ url_for('static', filename='custom.min.css') }}" rel="stylesheet">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webLib/css/layout.css">
+    <title>Dashboard</title>
+    <style>
+        /* Add your CSS styles here if needed */
+    </style>
+</head>
+<body>
+
+
+<div class="col-md-6 col-sm-6  ">
+    <div class="x_panel" style=" transform: translate(50%, 10%)">
+
+        <div class="x_content">
+
+
+            <div class="tab-content" id="myTabContent">
+
+                <form action="/HeatMap" method="post">
+
+                    <div class="">
+                        <!--                            <div class="page-title">-->
+                        <div class="title_left">
+                            <h3>날짜, 나이 범위 및 성별 선택</h3>
+                        </div>
+                        <p><h4>날짜 및 시간 범위:</h4> <span id="rangeDisplay"></span></p>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-4 col-sm-3 label-align" for="startDatetime">시작 날짜 및
+                                시간:</label>
+                            <div class="col-md-5 col-sm-6 ">
+                                <input type="datetime-local" id="startDatetime" name="startDatetime"
+                                       class="form-control"
+                                       required oninvalid="this.setCustomValidity('시작 날짜와 시간을 선택해주세요.')"
+                                       oninput="this.setCustomValidity('')">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-4 col-sm-3 label-align" for="endDatetime">끝나는 날짜 및
+                                시간:</label>
+                            <div class="col-md-5 col-sm-6 ">
+                                <input type="datetime-local" id="endDatetime" name="endDatetime" class="form-control"
+                                       required oninvalid="this.setCustomValidity('끝나는 날짜와 시간을 선택해주세요.')"
+                                       oninput="this.setCustomValidity('')"></div>
+                        </div>
+
+
+                        <h4><label>나이 범위:</label></h4>
+
+                        <div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-4 col-sm-3 label-align" for="minAge">최소 나이:</label>
+                                <div class="col-md-5 col-sm-6 ">
+                                    <select id="minAge" name="minAge" class="form-control">
+                                        <option value="(0, 2)">0 - 2세</option>
+                                        <option value="(4, 6)">4 - 6세</option>
+                                        <option value="(8, 12)">8 - 12세</option>
+                                        <option value="(15, 20)">15 - 20세</option>
+                                        <option value="(25, 32)">25 - 32세</option>
+                                        <option value="(38, 43)">38 - 43세</option>
+                                        <option value="(48, 53)">48 - 53세</option>
+                                        <option value="(60, 100)">60 - 100세</option>
+                                    </select></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-4 col-sm-3 label-align" for="maxAge">최대 나이:</label>
+                                <div class="col-md-5 col-sm-6 ">
+                                    <select id="maxAge" name="maxAge" class="form-control">
+                                        <option value="(0, 2)">0 - 2세</option>
+                                        <option value="(4, 6)">4 - 6세</option>
+                                        <option value="(8, 12)">8 - 12세</option>
+                                        <option value="(15, 20)">15 - 20세</option>
+                                        <option value="(25, 32)">25 - 32세</option>
+                                        <option value="(38, 43)">38 - 43세</option>
+                                        <option value="(48, 53)">48 - 53세</option>
+                                        <option value="(60, 100)">60 - 100세</option>
+                                    </select></div>
+                            </div>
+                        </div>
+
+                        <br><br>
+
+                        <h4><label>성별 선택:</label></h4>
+                        <div class="item form-group">
+                            <div class="col-md-9 col-sm-9 text-center">
+
+                            <div>
+                                <input class="icheckbox_flat-green" type="radio" id="genderAll" name="gender" value="all">
+                                <label for="genderAll">전체</label>
+                            </div>
+                            <div>
+                                <input class="icheckbox_flat-green" type="radio" id="genderFemale" name="gender" value="Female">
+                                <label for="genderFemale">여성</label>
+                            </div>
+                            <div>
+                                <input class="icheckbox_flat-green" type="radio" id="genderMale" name="gender" value="Male">
+                                <label for="genderMale">남성</label>
+                            </div>
+                            </div>
+                        </div>
+                            <br>
+
+                            <div class="btn-container">
+                                <a type="button" href="/" class="btn btn-secondary">뒤로 가기</a>
+
+                                <button type="submit" class="btn btn-success">그래프 보기</button>
+                            </div>
+                        </div>
+                        <!--                        </div>-->
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const startDatetimeInput = document.getElementById('startDatetime');
+    const endDatetimeInput = document.getElementById('endDatetime');
+    const minAgeInput = document.getElementById('minAge');
+    const maxAgeInput = document.getElementById('maxAge');
+    const rangeDisplay = document.getElementById('rangeDisplay');
+
+    startDatetimeInput.addEventListener('change', updateRangeDisplay);
+    endDatetimeInput.addEventListener('change', updateRangeDisplay);
+    minAgeInput.addEventListener('change', updateRangeDisplay);
+    maxAgeInput.addEventListener('change', updateRangeDisplay);
+
+    function updateRangeDisplay() {
+        const startDatetime = startDatetimeInput.value.replace('T', ' ');
+        const endDatetime = endDatetimeInput.value.replace('T', ' ');
+        const minAge = minAgeInput.value;
+        const maxAge = maxAgeInput.value;
+
+        const ageRange = minAge && maxAge ? `${minAge} - ${maxAge}` : '전체';
+        const selectedGender = document.querySelector('input[name="gender"]:checked');
+
+        if (startDatetime && endDatetime) {
+            rangeDisplay.textContent = `${startDatetime} ~ ${endDatetime}, 나이 범위: ${ageRange}, 성별: ${selectedGender ? selectedGender.value : '전체'}`;
+        } else {
+            rangeDisplay.textContent = '';
+        }
+    }
+</script>
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ url_for('static', filename='fastclick.js') }}"></script>
+<!-- NProgress -->
+<script src="{{ url_for('static', filename='nprogress.js') }}"></script>
+<!-- Chart.js -->
+<script src="{{ url_for('static', filename='Chart.min.js') }}"></script>
+<!-- gauge.js -->
+<script src="{{ url_for('static', filename='gauge.min.js') }}"></script>
+<!-- bootstrap-progressbar -->
+<script src="{{ url_for('static', filename='bootstrap-progressbar.min.js') }}"></script>
+<!-- iCheck -->
+<script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
+<!-- Skycons -->
+<script src="{{ url_for('static', filename='skycons.js') }}"></script>
+<!-- Flot -->
+<script src="{{ url_for('static', filename='jquery.flot.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.flot.pie.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.flot.time.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.flot.stack.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.flot.resize.js') }}"></script>
+<!-- Flot plugins -->
+<script src="{{ url_for('static', filename='jquery.flot.orderBars.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.flot.spline.min.js') }}"></script>
+<script src="{{ url_for('static', filename='curvedLines.js') }}"></script>
+<!-- DateJS -->
+<script src="{{ url_for('static', filename='date.js') }}"></script>
+<!-- JQVMap -->
+<script src="{{ url_for('static', filename='jquery.vmap.js') }}"></script>
+<script src="{{ url_for('static', filename='../maps/jquery.vmap.world.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.vmap.sampledata.js') }}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{{ url_for('static', filename='moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='daterangepicker.js') }}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js') }}"></script>
+
+<script>
+    const startDatetimeInput = document.getElementById('startDatetime');
+    const endDatetimeInput = document.getElementById('endDatetime');
+    const minAgeInput = document.getElementById('minAge');
+    const maxAgeInput = document.getElementById('maxAge');
+    const rangeDisplay = document.getElementById('rangeDisplay');
+
+    startDatetimeInput.addEventListener('change', updateRangeDisplay);
+    endDatetimeInput.addEventListener('change', updateRangeDisplay);
+    minAgeInput.addEventListener('change', updateRangeDisplay);
+    maxAgeInput.addEventListener('change', updateRangeDisplay);
+
+    function updateRangeDisplay() {
+        const startDatetime = startDatetimeInput.value.replace('T', ' ');
+        const endDatetime = endDatetimeInput.value.replace('T', ' ');
+        const minAge = minAgeInput.value;
+        const maxAge = maxAgeInput.value;
+
+        const ageRange = minAge && maxAge ? `${minAge} - ${maxAge}` : '전체';
+        const selectedGender = document.querySelector('input[name="gender"]:checked');
+
+        if (startDatetime && endDatetime) {
+            rangeDisplay.textContent = `${startDatetime} ~ ${endDatetime}, 나이 범위: ${ageRange}, 성별: ${selectedGender ? selectedGender.value : '전체'}`;
+        } else {
+            rangeDisplay.textContent = '';
+        }
+    }
+</script>
+</body>
+</html>

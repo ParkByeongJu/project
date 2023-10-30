@@ -226,7 +226,7 @@ def main():
                 # 데이터베이스에 성별과 나이, 감지 시간 추가
                     if not accumulated_faces[face_id]['counted']:
                         detect_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # 현재 시각
-                        query = f"INSERT INTO detected_faces (face_id, gender, age, detect_time) VALUES ({face_id}, '{gender}', '{age}', '{detect_time}')"
+                        query = f"INSERT INTO detected_faces (face_id, gender, age, detect_time, start_x, start_y, end_x, end_y) VALUES ({face_id}, '{gender}', '{age}', '{detect_time}', {start_x}, {start_y}, {end_x}, {end_y})"
                         cursor.execute(query)
                         connection.commit()
                         accumulated_faces[face_id]['counted'] = True
